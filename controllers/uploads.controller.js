@@ -154,8 +154,6 @@ const getImages = (req, res = response) => {
 
     const pathImg = path.join(__dirname, `../uploads/${tipo}/${image}`);
 
-    console.log('up');
-
     // IMAGE DEFAULT
     if (fs.existsSync(pathImg)) {
         res.sendFile(pathImg);
