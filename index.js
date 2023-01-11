@@ -29,6 +29,7 @@ app.use(express.static('public'));
 
 // RUTAS
 app.use('/api/login', require('./routes/auth.route'));
+app.use('/api/servers', require('./routes/servers.route'));
 app.use('/api/uploads', require('./routes/uploads.route'));
 app.use('/api/users', require('./routes/users.route'));
 
