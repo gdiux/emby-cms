@@ -1,5 +1,5 @@
 /** =====================================================================
- *  SERVER ROUTER 
+ *  PAYMENT ROUTER 
 =========================================================================*/
 const { Router } = require('express');
 const { check } = require('express-validator');
@@ -9,45 +9,45 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 // CONTROLLERS
-const { getServers, getServerId, createServer, updateServer } = require('../controllers/servers.controller');
+const { getPayments, getPaymentId, createPayment, updatePayment } = require('../controllers/payments.controller');
 
 const router = Router();
 
 /** =====================================================================
- *  GET SERVERS
+ *  GET PAYMENT
 =========================================================================*/
-router.get('/', validarJWT, getServers);
+router.get('/', validarJWT, getPayments);
 /** =====================================================================
- *  GET SERVERS
+ *  GET PAYMENT
 =========================================================================*/
 
 /** =====================================================================
- *  GET SERVER ID
+ *  GET PAYMENT ID
 =========================================================================*/
-router.get('/server/:id', validarJWT, getServerId);
+router.get('/payment/:id', validarJWT, getPaymentId);
 /** =====================================================================
- *  GET SERVER ID
+ *  GET PAYMENT ID
 =========================================================================*/
+
 /** =====================================================================
- *  POST CREATE SERVER
+ *  POST CREATE PAYMENT
 =========================================================================*/
 router.post('/', [validarJWT,
-        check('apikey', 'El usuario es obligatorio').not().isEmpty(),
-        check('name', 'El nombre es olbigatorio').not().isEmpty(),
+        check('amount', 'The amount is required').not().isEmpty(),
         validarCampos
     ],
-    createServer
+    createPayment
 );
 /** =====================================================================
- *  POST CREATE SERVER
+ *  POST CREATE PAYMENT
 =========================================================================*/
 
 /** =====================================================================
- *  PUT SERVER
+ *  PUT PAYMENT
 =========================================================================*/
-router.put('/', validarJWT, updateServer);
+router.put('/', validarJWT, updatePayment);
 /** =====================================================================
- *  PUT SERVER
+ *  PUT PAYMENT
 =========================================================================*/
 
 // EXPORT

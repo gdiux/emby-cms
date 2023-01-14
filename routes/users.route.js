@@ -9,7 +9,7 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 // CONTROLLERS
-const { createUsers, updateUser, deleteUser, getUserId, saveWishlist } = require('../controllers/users.controller');
+const { createUsers, updateUser, deleteUser, getUserId } = require('../controllers/users.controller');
 
 const router = Router();
 

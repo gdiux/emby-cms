@@ -1,5 +1,5 @@
 /** =====================================================================
- *  SERVER ROUTER 
+ *  SUBSCRIPTION ROUTER 
 =========================================================================*/
 const { Router } = require('express');
 const { check } = require('express-validator');
@@ -9,45 +9,56 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 // CONTROLLERS
-const { getServers, getServerId, createServer, updateServer } = require('../controllers/servers.controller');
+const { getSubscriptions, getSubscriptionId, createSubscription, updateSubscription, postSubscriptionsQuery, searchSubscription } = require('../controllers/subscriptions.controller');
+
 
 const router = Router();
 
 /** =====================================================================
- *  GET SERVERS
+ *  GET SUBSCRIPTIONS
 =========================================================================*/
-router.get('/', validarJWT, getServers);
+router.get('/', validarJWT, getSubscriptions);
 /** =====================================================================
- *  GET SERVERS
-=========================================================================*/
-
-/** =====================================================================
- *  GET SERVER ID
-=========================================================================*/
-router.get('/server/:id', validarJWT, getServerId);
-/** =====================================================================
- *  GET SERVER ID
-=========================================================================*/
-/** =====================================================================
- *  POST CREATE SERVER
-=========================================================================*/
-router.post('/', [validarJWT,
-        check('apikey', 'El usuario es obligatorio').not().isEmpty(),
-        check('name', 'El nombre es olbigatorio').not().isEmpty(),
-        validarCampos
-    ],
-    createServer
-);
-/** =====================================================================
- *  POST CREATE SERVER
+ *  GET SUBSCRIPTIONS
 =========================================================================*/
 
 /** =====================================================================
- *  PUT SERVER
+ *  GET SUBSCRIPTIONS
 =========================================================================*/
-router.put('/', validarJWT, updateServer);
+router.get('/search/:query', validarJWT, searchSubscription);
 /** =====================================================================
- *  PUT SERVER
+ *  GET SUBSCRIPTIONS
+=========================================================================*/
+
+/** =====================================================================
+ *  GET SUBSCRIPTION ID
+=========================================================================*/
+router.get('/subscription/:id', validarJWT, getSubscriptionId);
+/** =====================================================================
+ *  GET SUBSCRIPTION ID
+=========================================================================*/
+/** =====================================================================
+ *  POST CREATE SUBSCRIPTION
+=========================================================================*/
+router.post('/', validarJWT, createSubscription);
+/** =====================================================================
+ *  POST CREATE SUBSCRIPTION
+=========================================================================*/
+
+/** =====================================================================
+ *  POST SUBSCRIPTIONS QUERY
+=========================================================================*/
+router.post('/query', validarJWT, postSubscriptionsQuery);
+/** =====================================================================
+ *  POST SUBSCRIPTIONS QUERY
+=========================================================================*/
+
+/** =====================================================================
+ *  PUT SUBSCRIPTION
+=========================================================================*/
+router.put('/:id', validarJWT, updateSubscription);
+/** =====================================================================
+ *  PUT SUBSCRIPTION
 =========================================================================*/
 
 // EXPORT
