@@ -4,7 +4,7 @@ const PaymentsSchema = Schema({
 
     subid: {
         type: Schema.Types.ObjectId,
-        ref: 'Users',
+        ref: 'Subscriptions',
         require: true
     },
 

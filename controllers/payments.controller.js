@@ -11,7 +11,13 @@ const getPayments = async(req, res = response) => {
 
     try {
 
-        const payments = await Payment.find();
+        const skip = Number(req.query.skip);
+        const limit = Number(req.query.limit);
+
+        const payments = await Payment.find()
+            .populate('subid')
+            .skip(skip)
+            .limit(limit);
 
         res.json({
             ok: true,
