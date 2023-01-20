@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 
 //Conection DB
 const { dbConection } = require('./database/config');
+const { validateDate } = require('./middlewares/validar-subscriber');
 
 // Crear el servidor express
 const app = express();
@@ -34,6 +35,7 @@ app.use('/api/subscriptions', require('./routes/subscription.route'));
 app.use('/api/uploads', require('./routes/uploads.route'));
 app.use('/api/users', require('./routes/users.route'));
 
+
 // SPA
 app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, 'public/index.html'));
@@ -42,3 +44,8 @@ app.get('*', (req, res) => {
 app.listen(process.env.PORT, () => {
     console.log('Servidor Corriendo en el Puerto', process.env.PORT);
 });
+
+// COMPROBAR FECHA DE LOS SUBSCRITORES
+setInterval(() => {
+    validateDate();
+}, 3600000);

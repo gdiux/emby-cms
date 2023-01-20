@@ -40,6 +40,42 @@ const getPayments = async(req, res = response) => {
 =========================================================================*/
 
 /** =====================================================================
+ *  GET PAYMENTS
+=========================================================================*/
+const postPaymentsQuery = async(req, res = response) => {
+
+    try {
+
+        const skip = Number(req.query.skip) || 0;
+        const limit = Number(req.query.limit) || 20;
+        const query = req.body;
+
+        const payments = await Payment.find(query)
+            .populate('subid')
+            .skip(skip)
+            .limit(limit);
+
+        res.json({
+            ok: true,
+            payments,
+            total: payments.length
+        });
+
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({
+            ok: false,
+            msg: 'Unexpected error, please try again'
+        });
+    }
+
+};
+/** =====================================================================
+ *  GET PAYMENTS
+=========================================================================*/
+
+/** =====================================================================
  *  GET PAYMENT ID
 =========================================================================*/
 const getPaymentId = async(req, res = response) => {
@@ -169,5 +205,6 @@ module.exports = {
     getPayments,
     getPaymentId,
     createPayment,
-    updatePayment
+    updatePayment,
+    postPaymentsQuery
 };

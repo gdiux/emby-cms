@@ -9,7 +9,7 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 // CONTROLLERS
-const { getPayments, getPaymentId, createPayment, updatePayment } = require('../controllers/payments.controller');
+const { getPayments, getPaymentId, createPayment, updatePayment, postPaymentsQuery } = require('../controllers/payments.controller');
 
 const router = Router();
 
@@ -40,6 +40,14 @@ router.post('/', [validarJWT,
 );
 /** =====================================================================
  *  POST CREATE PAYMENT
+=========================================================================*/
+
+/** =====================================================================
+ *  POST QUERY PAYMENTS
+=========================================================================*/
+router.post('/query', validarJWT, postPaymentsQuery);
+/** =====================================================================
+ *  POST QUERY PAYMENTS
 =========================================================================*/
 
 /** =====================================================================
