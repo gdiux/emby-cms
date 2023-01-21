@@ -13,7 +13,7 @@
         "api",
         "emby"
     ],
-    "author": "Gilmer Contreras",
+    "author": "Maryuri Suarez",
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",

@@ -17,7 +17,8 @@ const getPayments = async(req, res = response) => {
         const payments = await Payment.find()
             .populate('subid')
             .skip(skip)
-            .limit(limit);
+            .limit(limit)
+            .sort({ fecha: -1 });
 
         res.json({
             ok: true,
