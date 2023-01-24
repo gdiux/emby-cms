@@ -9,7 +9,7 @@ const { validarCampos } = require('../middlewares/validar-campos');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 // CONTROLLERS
-const { getSubscriptions, getSubscriptionId, createSubscription, updateSubscription, postSubscriptionsQuery, searchSubscription } = require('../controllers/subscriptions.controller');
+const { getSubscriptions, getSubscriptionId, createSubscription, updateSubscription, postSubscriptionsQuery, searchSubscription, delSubscriber } = require('../controllers/subscriptions.controller');
 
 
 const router = Router();
@@ -57,6 +57,14 @@ router.post('/query', validarJWT, postSubscriptionsQuery);
  *  PUT SUBSCRIPTION
 =========================================================================*/
 router.put('/:id', validarJWT, updateSubscription);
+/** =====================================================================
+ *  PUT SUBSCRIPTION
+=========================================================================*/
+
+/** =====================================================================
+ *  PUT SUBSCRIPTION
+=========================================================================*/
+router.delete('/:id', validarJWT, delSubscriber);
 /** =====================================================================
  *  PUT SUBSCRIPTION
 =========================================================================*/

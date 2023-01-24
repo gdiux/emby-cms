@@ -4,6 +4,8 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 const Subscription = require('../models/subscriptions.model');
 
+const Payment = require('../models/payments.model');
+
 /** =====================================================================
  *  GET SUBSCRIPTIONS
 =========================================================================*/
@@ -240,6 +242,42 @@ const updateSubscription = async(req, res = response) => {
  *  UPDATE SUBSCRIPTION
 =========================================================================*/
 
+/** =====================================================================
+ *  DELETE SUBSCRIBER
+=========================================================================*/
+const delSubscriber = async(req, res = response) => {
+
+    try {
+
+        const subid = req.params.id;
+        if (!ObjectId.isValid(subid)) {
+            return res.status(404).json({
+                ok: false,
+                msg: 'Error ID'
+            });
+        }
+
+        const subscriber = await Subscription.findByIdAndDelete(subid);
+
+        res.json({
+            ok: true,
+            msg: 'the subscriber has been successfully removed'
+        });
+
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            ok: false,
+            msg: 'Unexpected error, please try again'
+        });
+    }
+
+};
+/** =====================================================================
+ *  DELETE SUBSCRIBER
+=========================================================================*/
+
 // EXPORTS
 module.exports = {
     getSubscriptions,
@@ -247,5 +285,6 @@ module.exports = {
     postSubscriptionsQuery,
     createSubscription,
     updateSubscription,
-    searchSubscription
+    searchSubscription,
+    delSubscriber
 };
